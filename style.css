@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap');
+
+:root {
+  --branco:     #f5f0e8;
+  --creme:      #ede5d0;
+  --areia:      #c9b99a;
+  --marrom-luz: #8b6f47;
+  --marrom:     #5c3d1e;
+  --marrom-esc: #3a2410;
+  --texto:      #2e1f0e;
+  --sutil:      #9a856a;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 18px; }
+
+body {
+  background-color: var(--branco);
+  color: var(--texto);
+  font-family: 'EB Garamond', Georgia, serif;
+  line-height: 1.75;
+  min-height: 100vh;
+}
+
+a {
+  color: var(--marrom);
+  text-decoration: none;
+  border-bottom: 1px solid var(--areia);
+  transition: color 0.2s, border-color 0.2s;
+}
+a:hover {
+  color: var(--marrom-esc);
+  border-color: var(--marrom);
+}
+
+/* ── layout ── */
+.container {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+
+/* ── cabeçalho ── */
+header {
+  border-bottom: 1px solid var(--areia);
+  padding-bottom: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+header h1 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: 0.04em;
+  color: var(--marrom-esc);
+}
+
+header h1 a { border: none; }
+
+nav {
+  margin-top: 0.6rem;
+  font-size: 0.85rem;
+  color: var(--sutil);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+nav a {
+  color: var(--sutil);
+  border: none;
+  margin-right: 1.5rem;
+}
+nav a:hover { color: var(--marrom); }
+
+/* ── entradas do diário ── */
+.entries { list-style: none; }
+
+.entry {
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--creme);
+}
+
+.entry-meta {
+  font-size: 0.78rem;
+  color: var(--sutil);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 0.3rem;
+}
+
+.entry-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+/* ── árvore de arquivos ── */
+.tree { list-style: none; font-size: 0.92rem; }
+.tree li { padding: 0.15rem 0; }
+.tree .year  { font-weight: 500; color: var(--marrom); margin-top: 0.8rem; }
+.tree .month { padding-left: 1.2rem; color: var(--marrom-luz); }
+.tree .day   { padding-left: 2.4rem; }
+.tree .part  { padding-left: 3.6rem; color: var(--sutil); }
+.tree .part a { color: var(--sutil); }
+.tree .part a:hover { color: var(--marrom); }
+
+/* ── página sobre ── */
+.prose h2 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 300;
+  font-size: 1.4rem;
+  color: var(--marrom-esc);
+  margin: 2rem 0 0.5rem;
+}
+.prose p { margin-bottom: 1rem; }
+.prose blockquote {
+  border-left: 2px solid var(--areia);
+  padding-left: 1rem;
+  color: var(--sutil);
+  font-style: italic;
+  margin: 1.5rem 0;
+}
+
+/* ── rodapé ── */
+footer {
+  margin-top: 4rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--creme);
+  font-size: 0.78rem;
+  color: var(--sutil);
+  text-align: center;
+  letter-spacing: 0.05em;
+}
