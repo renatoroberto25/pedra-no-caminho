@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diário de Oração</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <h1><a href="index.html">Diário de Oração</a></h1>
+    <nav>
+      <a href="index.html">início</a>
+      <a href="sobre.html">sobre</a>
+    </nav>
+  </header>
+
+  <main id="main" class="prose">
+    <p style="color:var(--sutil); font-size:0.9rem;">carregando…</p>
+  </main>
+
+  <footer>
+    ora et labora
+  </footer>
+
+</div>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+const file = params.get('file');
+const main = document.getElementById('main');
+
+if (!file || !file.endsWith('.md') || file.includes('..') || file.startsWith('/')) {
+  main.innerHTML = '<p style="color:var(--sutil)">entrada inválida.</p>';
+} else {
+  fetch(file)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('arquivo não encontrado');
+      }
+      return response.text();
+    })
+    .then(markdown => {
+      main.innerHTML = marked.parse(markdown);
+    })
+    .catch(() => {
+      main.innerHTML = '<p style="color:var(--sutil)">não foi possível carregar a entrada.</p>';
+    });
+}
+</script>
+</body>
+</html>
