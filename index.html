@@ -28,24 +28,21 @@
 </div>
 
 <script>
-/*
-  GitHub Pages não tem directory listing.
-  A estrutura é declarada aqui manualmente —
-  basta adicionar entradas conforme criar os arquivos.
-
-  Formato: { y, m, d, parts[] }
-  parts: 'manha' | 'tarde' | 'noite'  (só os que existirem)
-*/
-const ENTRADAS = [
-  { y: '2026', m: '06', d: '02', parts: ['manha', 'tarde', 'noite'] },
-  { y: '2026', m: '06', d: '03', parts: ['manha', 'tarde', 'noite'] }
-];
-
 const LABEL = { manha: 'manhã', tarde: 'tarde', noite: 'noite' };
+const ORDEM = { manha: 1, tarde: 2, noite: 3 };
 const MESES  = ['','jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
 
-function build() {
-  if (!ENTRADAS.length) {
+function parseEntry(file) {
+  const match = file.match(/^diario\/(\d{4})\/(\d{2})\/(\d{2})\/([^/]+)\.md$/);
+  if (!match) return null;
+  const [, y, m, d, part] = match;
+  return { y, m, d, part, file };
+}
+
+function build(files) {
+  const entradas = files.map(parseEntry).filter(Boolean);
+
+  if (!entradas.length) {
     document.getElementById('main').innerHTML =
       '<p style="color:var(--sutil)">—</p>';
     return;
@@ -53,11 +50,11 @@ function build() {
 
   // agrupa por ano → mês → dia
   const tree = {};
-  for (const e of ENTRADAS) {
+  for (const e of entradas) {
     tree[e.y] ??= {};
     tree[e.y][e.m] ??= {};
     tree[e.y][e.m][e.d] ??= [];
-    tree[e.y][e.m][e.d].push(...e.parts);
+    tree[e.y][e.m][e.d].push(e);
   }
 
   let html = '<ul class="tree">';
@@ -67,10 +64,9 @@ function build() {
       html += `<li class="month">${MESES[parseInt(m)]}</li>`;
       for (const d of Object.keys(tree[y][m]).sort().reverse()) {
         html += `<li class="day">${d}</li>`;
-        for (const p of tree[y][m][d]) {
-          const file = `diario/${y}/${m}/${d}/${p}.md`;
-          const href = `entrada.html?file=${encodeURIComponent(file)}`;
-          html += `<li class="part"><a href="${href}">${LABEL[p] ?? p}</a></li>`;
+        for (const e of tree[y][m][d].sort((a, b) => (ORDEM[a.part] ?? 9) - (ORDEM[b.part] ?? 9))) {
+          const href = `entrada.html?file=${encodeURIComponent(e.file)}`;
+          html += `<li class="part"><a href="${href}">${LABEL[e.part] ?? e.part}</a></li>`;
         }
       }
     }
@@ -80,7 +76,16 @@ function build() {
   document.getElementById('main').innerHTML = html;
 }
 
-build();
+fetch('diario/entradas.json')
+  .then(response => {
+    if (!response.ok) throw new Error('índice não encontrado');
+    return response.json();
+  })
+  .then(build)
+  .catch(() => {
+    document.getElementById('main').innerHTML =
+      '<p style="color:var(--sutil)">não foi possível carregar o índice.</p>';
+  });
 </script>
 </body>
 </html>
