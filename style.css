@@ -4,10 +4,10 @@
   --branco:     #f5f0e8;
   --creme:      #ede5d0;
   --areia:      #c9b99a;
-  --marrom-luz: #8b6f47;
-  --marrom:     #5c3d1e;
-  --marrom-esc: #3a2410;
-  --texto:      #2e1f0e;
+  --marrom-luz: #7d5f34;
+  --marrom:     #4a2d12;
+  --marrom-esc: #241307;
+  --texto:      #231508;
   --sutil:      #9a856a;
 }
 
@@ -52,11 +52,24 @@ header h1 {
   font-family: 'Cormorant Garamond', Georgia, serif;
   font-weight: 300;
   font-size: 2rem;
-  letter-spacing: 0.04em;
+  letter-spacing: 0;
   color: var(--marrom-esc);
 }
 
 header h1 a { border: none; }
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.brand img {
+  width: 4.2rem;
+  height: 4.2rem;
+  object-fit: contain;
+  flex: 0 0 auto;
+}
 
 nav {
   margin-top: 0.6rem;
@@ -131,4 +144,23 @@ footer {
   color: var(--sutil);
   text-align: center;
   letter-spacing: 0.05em;
+}
+
+@media (max-width: 520px) {
+  .container {
+    padding-top: 2rem;
+  }
+
+  .brand {
+    gap: 0.75rem;
+  }
+
+  .brand img {
+    width: 3.4rem;
+    height: 3.4rem;
+  }
+
+  header h1 {
+    font-size: 1.7rem;
+  }
 }
