@@ -76,7 +76,7 @@ function build(files) {
   document.getElementById('main').innerHTML = html;
 }
 
-fetch('diario/entradas.json')
+fetch('diario/entradas.json', { cache: 'no-store' })
   .then(response => {
     if (!response.ok) throw new Error('índice não encontrado');
     return response.json();

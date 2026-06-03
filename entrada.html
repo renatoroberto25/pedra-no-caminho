@@ -36,7 +36,7 @@ const main = document.getElementById('main');
 if (!file || !file.endsWith('.md') || file.includes('..') || file.startsWith('/')) {
   main.innerHTML = '<p style="color:var(--sutil)">entrada inválida.</p>';
 } else {
-  fetch(file)
+  fetch(file, { cache: 'no-store' })
     .then(response => {
       if (!response.ok) {
         throw new Error('arquivo não encontrado');
