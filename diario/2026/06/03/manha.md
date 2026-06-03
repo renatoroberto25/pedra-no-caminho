@@ -78,5 +78,5 @@ O mundo chama estabilidade de tédio. A fé chama de paz.
 
 # Meditação
 
-> “”
+> “Onde acabou a jurisdição do poder civil? Que invadiu completamente a moral pública.”
 
