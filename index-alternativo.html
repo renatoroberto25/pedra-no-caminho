@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diário de Oração — índice alternativo</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .intro { margin-bottom: 1.8rem; color: var(--sutil); }
+    .index-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.5rem; }
+    .index-actions button {
+      border: 1px solid var(--areia);
+      background: transparent;
+      color: var(--marrom);
+      padding: 0.7rem 1rem;
+      font: inherit;
+      cursor: pointer;
+      border-radius: 0.35rem;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .index-actions button:hover {
+      background: var(--areia);
+      color: var(--marrom-esc);
+      border-color: var(--marrom);
+    }
+    .tree { list-style: none; font-size: 0.95rem; }
+    .tree details { border: 1px solid var(--creme); border-radius: 0.5rem; margin-bottom: 0.85rem; background: rgba(237,229,208,0.4); }
+    .tree summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.95rem 1rem;
+      font-weight: 500;
+      color: var(--marrom-esc);
+      user-select: none;
+    }
+    .tree summary::-webkit-details-marker { display: none; }
+    .tree summary::before {
+      content: '▸';
+      display: inline-block;
+      transform: rotate(0deg);
+      transition: transform 0.2s ease;
+      width: 1rem;
+      text-align: center;
+    }
+    .tree details[open] summary::before { transform: rotate(90deg); }
+    .tree .details-body { padding: 0 1rem 0.8rem; }
+    .tree .month summary { color: var(--marrom); }
+    .tree .day summary { color: var(--marrom-luz); font-size: 0.96rem; }
+    .tree .part-list { list-style: none; padding: 0.5rem 0 0 0; margin: 0; }
+    .tree .part-item { padding: 0.25rem 0; }
+    .tree .part-item a { color: var(--sutil); }
+    .tree .part-item a:hover { color: var(--marrom); }
+    .summary-meta { color: var(--sutil); font-size: 0.85rem; }
+    .tree p { margin: 0; }
+    .tree .empty { color: var(--sutil); padding: 0 1rem 0.8rem; }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <h1>
+      <a class="brand" href="index-alternativo.html">
+        <img src="assets/rp-logo.png" alt="Renato Porfírio">
+        <span>Diário de Oração</span>
+      </a>
+    </h1>
+    <nav>
+      <a href="index.html">início</a>
+      <a href="index-alternativo.html">alternativo</a>
+      <a href="sobre.html">sobre</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <p class="intro">Um índice com comportamento. Abra cada ano, mês ou dia para ver as partes e mantenha a lista mais limpa.</p>
+    <div class="index-actions">
+      <button id="expandAll">Expandir tudo</button>
+      <button id="collapseAll">Recolher tudo</button>
+    </div>
+    <p style="color:var(--sutil); font-size:0.9rem;">carregando…</p>
+  </main>
+
+  <footer>
+    ora et labora
+  </footer>
+
+</div>
+
+<script>
+const LABEL = { manha: 'manhã', tarde: 'tarde', noite: 'noite' };
+const ORDEM = { manha: 1, tarde: 2, noite: 3 };
+const MESES  = ['','jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
+
+function parseEntry(file) {
+  const match = file.match(/^diario\/(\d{4})\/(\d{2})\/(\d{2})\/([^/]+)\.md$/);
+  if (!match) return null;
+  const [, y, m, d, part] = match;
+  return { y, m, d, part, file };
+}
+
+function createSummary(label, meta) {
+  const summary = document.createElement('summary');
+  summary.innerHTML = `${label}<span class="summary-meta">${meta}</span>`;
+  return summary;
+}
+
+function build(files) {
+  const entradas = files.map(parseEntry).filter(Boolean);
+  const main = document.getElementById('main');
+
+  if (!entradas.length) {
+    main.innerHTML = '<p class="empty">nenhuma entrada encontrada.</p>';
+    return;
+  }
+
+  const tree = {};
+  for (const e of entradas) {
+    tree[e.y] ??= {};
+    tree[e.y][e.m] ??= {};
+    tree[e.y][e.m][e.d] ??= [];
+    tree[e.y][e.m][e.d].push(e);
+  }
+
+  const container = document.createElement('div');
+  container.className = 'tree';
+
+  for (const y of Object.keys(tree).sort().reverse()) {
+    const yearDetails = document.createElement('details');
+    yearDetails.open = true;
+    yearDetails.className = 'year';
+    yearDetails.appendChild(createSummary(y, Object.keys(tree[y]).length + ' mês(es)'));
+
+    const yearBody = document.createElement('div');
+    yearBody.className = 'details-body';
+
+    for (const m of Object.keys(tree[y]).sort().reverse()) {
+      const monthLabel = MESES[parseInt(m)] || m;
+      const monthDetails = document.createElement('details');
+      monthDetails.className = 'month';
+      monthDetails.appendChild(createSummary(monthLabel, Object.keys(tree[y][m]).length + ' dia(s)'));
+
+      const monthBody = document.createElement('div');
+      monthBody.className = 'details-body';
+
+      for (const d of Object.keys(tree[y][m]).sort().reverse()) {
+        const dayEntries = tree[y][m][d].sort((a, b) => (ORDEM[a.part] ?? 9) - (ORDEM[b.part] ?? 9));
+        const daySummary = dayEntries.map(e => LABEL[e.part] ?? e.part).join(', ');
+        const dayDetails = document.createElement('details');
+        dayDetails.className = 'day';
+        dayDetails.appendChild(createSummary(d.padStart(2, '0'), daySummary));
+
+        const partList = document.createElement('ul');
+        partList.className = 'part-list';
+
+        for (const e of dayEntries) {
+          const item = document.createElement('li');
+          item.className = 'part-item';
+          const link = document.createElement('a');
+          link.href = `entrada.html?file=${encodeURIComponent(e.file)}`;
+          link.textContent = LABEL[e.part] ?? e.part;
+          item.appendChild(link);
+          partList.appendChild(item);
+        }
+
+        dayDetails.appendChild(partList);
+        monthBody.appendChild(dayDetails);
+      }
+
+      monthDetails.appendChild(monthBody);
+      yearBody.appendChild(monthDetails);
+    }
+
+    yearDetails.appendChild(yearBody);
+    container.appendChild(yearDetails);
+  }
+
+  const intro = document.querySelector('.intro');
+  const actions = document.querySelector('.index-actions');
+  main.innerHTML = '';
+  if (intro) main.appendChild(intro);
+  if (actions) main.appendChild(actions);
+  main.appendChild(container);
+
+  const expandAll = document.getElementById('expandAll');
+  const collapseAll = document.getElementById('collapseAll');
+  expandAll.addEventListener('click', () => document.querySelectorAll('.tree details').forEach(d => d.open = true));
+  collapseAll.addEventListener('click', () => document.querySelectorAll('.tree details').forEach(d => d.open = false));
+}
+
+fetch('diario/entradas.json', { cache: 'no-store' })
+  .then(response => {
+    if (!response.ok) throw new Error('índice não encontrado');
+    return response.json();
+  })
+  .then(build)
+  .catch(() => {
+    document.getElementById('main').innerHTML =
+      '<p style="color:var(--sutil)">não foi possível carregar o índice.</p>';
+  });
+</script>
+</body>
+</html>
