@@ -7,8 +7,8 @@
   --marrom-luz: #7d5f34;
   --marrom:     #4a2d12;
   --marrom-esc: #241307;
-  --texto:      #231508;
-  --sutil:      #9a856a;
+  --texto:      #1e1309;
+  --sutil:      #7f6a4a;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -20,18 +20,19 @@ body {
   color: var(--texto);
   font-family: 'EB Garamond', Georgia, serif;
   line-height: 1.75;
+  font-weight: 500;
   min-height: 100vh;
 }
 
 a {
-  color: var(--marrom);
+  color: var(--marrom-esc);
   text-decoration: none;
   border-bottom: 1px solid var(--areia);
   transition: color 0.2s, border-color 0.2s;
 }
 a:hover {
   color: var(--marrom-esc);
-  border-color: var(--marrom);
+  border-color: var(--marrom-esc);
 }
 
 /* ── layout ── */
@@ -50,7 +51,7 @@ header {
 
 header h1 {
   font-family: 'Cormorant Garamond', Georgia, serif;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 2rem;
   line-height: 1;
   letter-spacing: 0;
@@ -114,13 +115,13 @@ nav a:hover { color: var(--marrom); }
 }
 
 /* ── árvore de arquivos ── */
-.tree { list-style: none; font-size: 0.92rem; }
-.tree li { padding: 0.15rem 0; }
-.tree .year  { font-weight: 500; color: var(--marrom); margin-top: 0.8rem; }
-.tree .month { padding-left: 1.2rem; color: var(--marrom-luz); }
-.tree .day   { padding-left: 2.4rem; }
-.tree .part  { padding-left: 3.6rem; color: var(--sutil); }
-.tree .part a { color: var(--sutil); }
+.tree { list-style: none; font-size: 0.95rem; }
+.tree li { padding: 0.2rem 0; }
+.tree .year  { font-weight: 600; color: var(--marrom-esc); margin-top: 0.8rem; }
+.tree .month { padding-left: 1.2rem; color: var(--marrom); font-weight: 600; }
+.tree .day   { padding-left: 2.4rem; color: var(--marrom-esc); font-weight: 500; }
+.tree .part  { padding-left: 3.6rem; color: var(--texto); font-weight: 500; }
+.tree .part a { color: var(--marrom-esc); }
 .tree .part a:hover { color: var(--marrom); }
 
 /* ── página sobre ── */
