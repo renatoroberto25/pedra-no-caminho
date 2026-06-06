@@ -124,6 +124,75 @@ nav a:hover { color: var(--marrom); }
 .tree .part a { color: var(--marrom-esc); }
 .tree .part a:hover { color: var(--marrom); }
 
+.index-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.index-actions button {
+  border: 1px solid var(--areia);
+  background: transparent;
+  color: var(--marrom);
+  padding: 0.7rem 1rem;
+  font: inherit;
+  cursor: pointer;
+  border-radius: 0.35rem;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.index-actions button:hover {
+  background: var(--areia);
+  color: var(--marrom-esc);
+  border-color: var(--marrom);
+}
+
+.tree details {
+  border: 1px solid var(--creme);
+  border-radius: 0.5rem;
+  margin-bottom: 0.85rem;
+  background: rgba(237,229,208,0.4);
+}
+
+.tree summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.95rem 1rem;
+  font-weight: 500;
+  color: var(--marrom-esc);
+  user-select: none;
+}
+
+.tree summary::-webkit-details-marker { display: none; }
+
+.tree summary::before {
+  content: '▸';
+  display: inline-block;
+  transform: rotate(0deg);
+  transition: transform 0.2s ease;
+  width: 1rem;
+  text-align: center;
+}
+
+.tree details[open] summary::before { transform: rotate(90deg); }
+.tree .details-body { padding: 0 1rem 0.8rem; }
+.tree details.year { margin-top: 0.8rem; }
+.tree .month summary { color: var(--marrom); }
+.tree .day summary { color: var(--marrom-luz); font-size: 0.96rem; }
+.tree .part-list { list-style: none; padding: 0.5rem 0 0 0; margin: 0; }
+.tree .part-item { padding: 0.25rem 0; }
+.tree .part-item a { color: var(--sutil); }
+.tree .part-item a:hover { color: var(--marrom); }
+.summary-meta { color: var(--sutil); font-size: 0.85rem; }
+.loading,
+.empty,
+.error { color: var(--sutil); font-size: 0.9rem; }
+
 /* ── página sobre ── */
 .prose h2 {
   font-family: 'Cormorant Garamond', Georgia, serif;
