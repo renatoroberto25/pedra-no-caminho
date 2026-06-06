@@ -1,17 +1,41 @@
-# A Escritura Aponta para o Filho
+# A Escritura aponta para o Filho
 
-A Escritura não é o destino — é a seta.
+**A Escritura não é o destino. É a seta.**
 
-Deus precede a Escritura. A Escritura é parte de Sua Palavra, não sua totalidade. E essa palavra, em sua estrutura mais profunda, aponta para uma Pessoa: o Filho, a Segunda Pessoa da Santíssima Trindade. Não por acaso, *Bereshit* começa com B e o *Amen* termina com N — *Ben*, Filho. Princípio e fim encapsulados na própria letra do texto.
+Deus precede a Escritura. A Escritura é **Palavra de Deus**, mas não esgota Deus, nem aprisiona Sua ação. Em sua estrutura mais profunda, ela aponta para uma Pessoa: **o Filho**, a Segunda Pessoa da Santíssima Trindade.
 
-Quando o Filho vem, Ele cumpre. Não aboliu a Lei — assumiu sua autoridade. "Não vim abolir, mas dar cumprimento." E ao cumprir, inaugura algo novo: a Igreja. Prepara o caminho para o Espírito, o Paráclito, que agora opera no mundo.
+Não por acaso, o princípio e o fim convergem n’Ele. Cristo é o **Alfa e o Ômega**, o **Verbo eterno**, Aquele por meio de quem tudo foi feito e para quem tudo se dirige.
 
-O caminho de Emaús nos diz tudo. Os discípulos conheciam as Escrituras. Sabiam de cor. E mesmo assim, caminhavam na tristeza, sem reconhecer Aquele que as cumpria. Os olhos só se abriram na Fração do Pão — no Sacramento, não na leitura. O Filho é o resultado da Escritura. Sem Ele, a letra fecha os olhos.
+Quando o Filho vem, Ele cumpre. Não aboliu a Lei, mas assumiu sua autoridade e a levou à plenitude:
 
-O Sola Scriptura, em sua lógica, fica apontando para Cristo mas não O obedece. Aceita o Filho da Escritura e recusa o que o Filho instituiu. É uma contradição que se desfaz sozinha: se Cristo funda uma Igreja e promete que as portas do inferno não prevalecerão — por que confiar na Escritura que O anuncia e desconfiar da Igreja que Ele mesmo edificou?
+> "Não penseis que vim abolir a Lei ou os Profetas. Não vim abolir, mas dar cumprimento."
 
-A indignidade dos instrumentos não é falha do sistema. É o *design*. Pedro negou três vezes antes de apascentar as ovelhas. Deus sabia o tempo todo que não há homem digno de Seu sacrifício — nem de O batizar, nem de O consagrar. Por isso a vida salvífica não repousa na dignidade de ninguém: repousa na **oração e no Sacramento**.
+E, ao cumprir, inaugura algo novo: **a Igreja**. Prepara o caminho para o **Espírito Santo**, o Paráclito, que agora opera no mundo por meio do **Corpo de Cristo**.
+
+O caminho de **Emaús** nos diz muito. Os discípulos conheciam as Escrituras. Sabiam o que os profetas haviam dito. Mesmo assim, caminhavam tristes, sem reconhecer Aquele de quem as Escrituras falavam. Seus olhos só se abriram na **fração do pão**.
+
+Não foi apenas na leitura. Foi no **gesto sacramental**.
+
+A Escritura aponta para Cristo. Mas Cristo não deixou apenas um livro. Deixou uma **Igreja**, **sacramentos**, **autoridade**, **sucessão apostólica** e o **Espírito Santo**.
+
+Por isso, o problema do *Sola Scriptura* é sua contradição interna: aceita a Escritura que aponta para Cristo, mas recusa ouvir plenamente o que Cristo instituiu. Se Cristo fundou uma Igreja e prometeu que **as portas do inferno não prevaleceriam contra ela**, por que confiar na Escritura que O anuncia e desconfiar da Igreja que Ele mesmo edificou?
+
+Nenhum homem é digno do sacrifício de Cristo. Ainda assim, **Ele foi até a cruz**.
+
+Nenhum homem era digno de batizá-Lo. Ainda assim, **João O batizou**.
+
+Nenhum homem era digno de apresentá-Lo no templo. Ainda assim, **Ele se submeteu à ordem que Ele mesmo vinha cumprir**.
+
+Assim também nos sacramentos: **Deus é quem age**. Os homens são instrumentos. O ministro visível serve Àquele que opera invisivelmente.
+
+Até Paulo, tão amado pelos que apelam às Escrituras, não caminhou isolado. Foi chamado diretamente por Cristo, mas depois buscou a comunhão com os Apóstolos. Subiu a Jerusalém, encontrou **Cefas**, recebeu reconhecimento e não iniciou sua missão como uma autoridade separada do Corpo.
+
+**A Escritura aponta para o Filho.**
+
+**Mas o Filho nos conduz à Igreja.**
+
+E a Igreja, pelo Espírito Santo, nos entrega **Cristo vivo**: na fé, na doutrina, nos sacramentos e na comunhão dos santos.
 
 ## Meditação
 
-> "Senhor, que não nos contentemos com apontar para Ti enquanto recusamos Tua voz. Deste-nos Tua Igreja, Teus Sacramentos, Teu Espírito. Que tenhamos humildade para obedecer o que instituíste, e não a sabedoria orgulhosa de quem lê a seta e inventa o caminho."
+> "Senhor, que não nos contentemos em apontar para Ti enquanto recusamos Tua voz. Deste-nos Tua Igreja, Teus sacramentos e Teu Espírito. Dá-nos humildade para obedecer ao que instituíste, e não a soberba de quem lê a seta, mas inventa outro caminho."
