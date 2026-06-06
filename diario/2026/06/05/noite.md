@@ -2,7 +2,7 @@
 
 A Escritura não é o destino — é a seta.
 
-Deus precede a Escritura. A Escritura é parte de Sua Palavra, não sua totalidade. E essa palavra, em sua estrutura mais profunda, aponta para uma Pessoa: o Filho, a Segunda Pessoa da Santíssima Trindade. Não por acaso, *Bereshit* começa com B e a Torah termina com N — *Ben*, Filho. Princípio e fim encapsulados na própria letra do texto.
+Deus precede a Escritura. A Escritura é parte de Sua Palavra, não sua totalidade. E essa palavra, em sua estrutura mais profunda, aponta para uma Pessoa: o Filho, a Segunda Pessoa da Santíssima Trindade. Não por acaso, *Bereshit* começa com B e o Amen termina com N — *Ben*, Filho. Princípio e fim encapsulados na própria letra do texto.
 
 Quando o Filho vem, Ele cumpre. Não aboliu a Lei — assumiu sua autoridade. "Não vim abolir, mas dar cumprimento." E ao cumprir, inaugura algo novo: a Igreja. Prepara o caminho para o Espírito, o Paráclito, que agora opera no mundo.
 
