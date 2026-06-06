@@ -23,7 +23,11 @@
   </header>
 
   <main id="main">
-    <p style="color:var(--sutil); font-size:0.9rem;">carregando…</p>
+    <div class="index-actions">
+      <button id="expandAll">Expandir tudo</button>
+      <button id="collapseAll">Recolher tudo</button>
+    </div>
+    <p class="loading">carregando…</p>
   </main>
 
   <footer>
@@ -44,16 +48,21 @@ function parseEntry(file) {
   return { y, m, d, part, file };
 }
 
+function createSummary(label, meta) {
+  const summary = document.createElement('summary');
+  summary.innerHTML = `${label}<span class="summary-meta">${meta}</span>`;
+  return summary;
+}
+
 function build(files) {
   const entradas = files.map(parseEntry).filter(Boolean);
+  const main = document.getElementById('main');
 
   if (!entradas.length) {
-    document.getElementById('main').innerHTML =
-      '<p style="color:var(--sutil)">—</p>';
+    main.innerHTML = '<p class="empty">nenhuma entrada encontrada.</p>';
     return;
   }
 
-  // agrupa por ano → mês → dia
   const tree = {};
   for (const e of entradas) {
     tree[e.y] ??= {};
@@ -62,23 +71,70 @@ function build(files) {
     tree[e.y][e.m][e.d].push(e);
   }
 
-  let html = '<ul class="tree">';
-  for (const y of Object.keys(tree).sort().reverse()) {
-    html += `<li class="year">${y}</li>`;
-    for (const m of Object.keys(tree[y]).sort().reverse()) {
-      html += `<li class="month">${MESES[parseInt(m)]}</li>`;
-      for (const d of Object.keys(tree[y][m]).sort().reverse()) {
-        html += `<li class="day">${d}</li>`;
-        for (const e of tree[y][m][d].sort((a, b) => (ORDEM[a.part] ?? 9) - (ORDEM[b.part] ?? 9))) {
-          const href = `entrada.html?file=${encodeURIComponent(e.file)}`;
-          html += `<li class="part"><a href="${href}">${LABEL[e.part] ?? e.part}</a></li>`;
-        }
-      }
-    }
-  }
-  html += '</ul>';
+  const container = document.createElement('div');
+  container.className = 'tree';
 
-  document.getElementById('main').innerHTML = html;
+  for (const y of Object.keys(tree).sort().reverse()) {
+    const yearDetails = document.createElement('details');
+    yearDetails.open = true;
+    yearDetails.className = 'year';
+    yearDetails.appendChild(createSummary(y, Object.keys(tree[y]).length + ' mês(es)'));
+
+    const yearBody = document.createElement('div');
+    yearBody.className = 'details-body';
+
+    for (const m of Object.keys(tree[y]).sort().reverse()) {
+      const monthLabel = MESES[parseInt(m)] || m;
+      const monthDetails = document.createElement('details');
+      monthDetails.className = 'month';
+      monthDetails.appendChild(createSummary(monthLabel, Object.keys(tree[y][m]).length + ' dia(s)'));
+
+      const monthBody = document.createElement('div');
+      monthBody.className = 'details-body';
+
+      for (const d of Object.keys(tree[y][m]).sort().reverse()) {
+        const dayEntries = tree[y][m][d].sort((a, b) => (ORDEM[a.part] ?? 9) - (ORDEM[b.part] ?? 9));
+        const daySummary = dayEntries.map(e => LABEL[e.part] ?? e.part).join(', ');
+        const dayDetails = document.createElement('details');
+        dayDetails.className = 'day';
+        dayDetails.appendChild(createSummary(d.padStart(2, '0'), daySummary));
+
+        const partList = document.createElement('ul');
+        partList.className = 'part-list';
+
+        for (const e of dayEntries) {
+          const item = document.createElement('li');
+          item.className = 'part-item';
+          const link = document.createElement('a');
+          link.href = `entrada.html?file=${encodeURIComponent(e.file)}`;
+          link.textContent = LABEL[e.part] ?? e.part;
+          item.appendChild(link);
+          partList.appendChild(item);
+        }
+
+        dayDetails.appendChild(partList);
+        monthBody.appendChild(dayDetails);
+      }
+
+      monthDetails.appendChild(monthBody);
+      yearBody.appendChild(monthDetails);
+    }
+
+    yearDetails.appendChild(yearBody);
+    container.appendChild(yearDetails);
+  }
+
+  const actions = document.querySelector('.index-actions');
+  main.innerHTML = '';
+  if (actions) main.appendChild(actions);
+  main.appendChild(container);
+
+  document.getElementById('expandAll').addEventListener('click', () => {
+    document.querySelectorAll('.tree details').forEach(d => d.open = true);
+  });
+  document.getElementById('collapseAll').addEventListener('click', () => {
+    document.querySelectorAll('.tree details').forEach(d => d.open = false);
+  });
 }
 
 fetch('diario/entradas.json', { cache: 'no-store' })
@@ -89,7 +145,7 @@ fetch('diario/entradas.json', { cache: 'no-store' })
   .then(build)
   .catch(() => {
     document.getElementById('main').innerHTML =
-      '<p style="color:var(--sutil)">não foi possível carregar o índice.</p>';
+      '<p class="error">não foi possível carregar o índice.</p>';
   });
 </script>
 </body>
