@@ -1,14 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap');
 
 :root {
-  --branco:     #f5f0e8;
-  --creme:      #ede5d0;
-  --areia:      #c9b99a;
-  --marrom-luz: #7d5f34;
-  --marrom:     #4a2d12;
+  --branco:     #f2eadc;
+  --creme:      #e5d8bd;
+  --areia:      #b99f72;
+  --marrom-luz: #6f4f26;
+  --marrom:     #3f250f;
   --marrom-esc: #241307;
   --texto:      #1e1309;
-  --sutil:      #7f6a4a;
+  --sutil:      #6b5232;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -25,7 +25,7 @@ body {
 }
 
 a {
-  color: var(--marrom-esc);
+  color: var(--marrom);
   text-decoration: none;
   border-bottom: 1px solid var(--areia);
   transition: color 0.2s, border-color 0.2s;
@@ -91,6 +91,7 @@ nav a {
   margin-right: 1.5rem;
 }
 nav a:hover { color: var(--marrom); }
+nav a[aria-current="page"] { color: var(--marrom-esc); }
 
 /* ── entradas do diário ── */
 .entries { list-style: none; }
@@ -144,7 +145,7 @@ nav a:hover { color: var(--marrom); }
 
 .index-actions button:hover {
   background: var(--areia);
-  color: var(--marrom-esc);
+  color: var(--texto);
   border-color: var(--marrom);
 }
 
@@ -152,7 +153,7 @@ nav a:hover { color: var(--marrom); }
   border: 1px solid var(--creme);
   border-radius: 0.5rem;
   margin-bottom: 0.85rem;
-  background: rgba(237,229,208,0.4);
+  background: rgba(229,216,189,0.5);
 }
 
 .tree summary {
@@ -186,8 +187,8 @@ nav a:hover { color: var(--marrom); }
 .tree .day summary { color: var(--marrom-luz); font-size: 0.96rem; }
 .tree .part-list { list-style: none; padding: 0.5rem 0 0 0; margin: 0; }
 .tree .part-item { padding: 0.25rem 0; }
-.tree .part-item a { color: var(--sutil); }
-.tree .part-item a:hover { color: var(--marrom); }
+.tree .part-item a { color: var(--marrom); }
+.tree .part-item a:hover { color: var(--marrom-esc); }
 .summary-meta { color: var(--sutil); font-size: 0.85rem; }
 .loading,
 .empty,
@@ -202,6 +203,12 @@ nav a:hover { color: var(--marrom); }
   margin: 2rem 0 0.5rem;
 }
 .prose p { margin-bottom: 1rem; }
+.prose h1 { margin-bottom: 1.25rem; }
+.entry-back {
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+.entry-content { overflow-wrap: break-word; }
 .prose blockquote {
   border-left: 2px solid var(--areia);
   padding-left: 1rem;
