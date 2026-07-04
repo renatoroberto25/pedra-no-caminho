@@ -23,8 +23,8 @@
     </nav>
   </header>
 
-  <main id="main" class="prose">
-    <p style="color:var(--sutil); font-size:0.9rem;">carregando…</p>
+  <main id="main" class="prose" aria-live="polite">
+    <p class="loading">carregando…</p>
   </main>
 
   <footer>
@@ -39,7 +39,7 @@ const file = params.get('file');
 const main = document.getElementById('main');
 
 if (!file || !file.endsWith('.md') || file.includes('..') || file.startsWith('/')) {
-  main.innerHTML = '<p style="color:var(--sutil)">entrada inválida.</p>';
+  main.innerHTML = '<p class="error">entrada inválida.</p>';
 } else {
   fetch(file, { cache: 'no-store' })
     .then(response => {
@@ -49,10 +49,16 @@ if (!file || !file.endsWith('.md') || file.includes('..') || file.startsWith('/'
       return response.text();
     })
     .then(markdown => {
-      main.innerHTML = marked.parse(markdown);
+      main.innerHTML = '<p class="entry-back"><a href="index.html">voltar ao índice</a></p>';
+      const article = document.createElement('article');
+      article.className = 'entry-content';
+      article.innerHTML = marked.parse(markdown);
+      main.appendChild(article);
+      const title = article.querySelector('h1')?.textContent.trim();
+      if (title) document.title = title + ' — Diário de Oração';
     })
     .catch(() => {
-      main.innerHTML = '<p style="color:var(--sutil)">não foi possível carregar a entrada.</p>';
+      main.innerHTML = '<p class="error">não foi possível carregar a entrada.</p>';
     });
 }
 </script>

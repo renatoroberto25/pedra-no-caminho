@@ -17,15 +17,15 @@
       </a>
     </h1>
     <nav>
-      <a href="index.html">início</a>
+      <a href="index.html" aria-current="page">início</a>
       <a href="sobre.html">sobre</a>
     </nav>
   </header>
 
-  <main id="main">
+  <main id="main" aria-live="polite">
     <div class="index-actions">
-      <button id="expandAll">Expandir tudo</button>
-      <button id="collapseAll">Recolher tudo</button>
+      <button id="expandAll" type="button">Expandir tudo</button>
+      <button id="collapseAll" type="button">Recolher tudo</button>
     </div>
     <p class="loading">carregando…</p>
   </main>
@@ -74,7 +74,9 @@ function build(files) {
   const container = document.createElement('div');
   container.className = 'tree';
 
-  for (const y of Object.keys(tree).sort().reverse()) {
+  const years = Object.keys(tree).sort().reverse();
+
+  for (const y of years) {
     const yearDetails = document.createElement('details');
     yearDetails.open = true;
     yearDetails.className = 'year';
@@ -82,20 +84,24 @@ function build(files) {
 
     const yearBody = document.createElement('div');
     yearBody.className = 'details-body';
+    const months = Object.keys(tree[y]).sort().reverse();
 
-    for (const m of Object.keys(tree[y]).sort().reverse()) {
+    for (const m of months) {
       const monthLabel = MESES[parseInt(m)] || m;
       const monthDetails = document.createElement('details');
+      monthDetails.open = y === years[0] && m === months[0];
       monthDetails.className = 'month';
       monthDetails.appendChild(createSummary(monthLabel, Object.keys(tree[y][m]).length + ' dia(s)'));
 
       const monthBody = document.createElement('div');
       monthBody.className = 'details-body';
+      const days = Object.keys(tree[y][m]).sort().reverse();
 
-      for (const d of Object.keys(tree[y][m]).sort().reverse()) {
+      for (const d of days) {
         const dayEntries = tree[y][m][d].sort((a, b) => (ORDEM[a.part] ?? 9) - (ORDEM[b.part] ?? 9));
         const daySummary = dayEntries.map(e => LABEL[e.part] ?? e.part).join(', ');
         const dayDetails = document.createElement('details');
+        dayDetails.open = y === years[0] && m === months[0] && d === days[0];
         dayDetails.className = 'day';
         dayDetails.appendChild(createSummary(d.padStart(2, '0'), daySummary));
 
